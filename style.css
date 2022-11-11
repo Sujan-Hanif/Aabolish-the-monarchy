@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+
+
+.display-cards_cards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    list-style-type: none;
+}
+
+.display-cards_cards img {
+    height: 14rem;
+    width: 9rem;
+}
+
+.info {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.dealer {
+    background-color: aqua;
+    height: 100px;
+    width: 100px;
+}
+
+.score {
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+}
+
+#start-game {
+    padding: .5rem;
+}

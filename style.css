@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+body {
+    font-size: 16px;
+}
 
 
 h1 {
@@ -13,20 +16,6 @@ h1 {
 
 
 
-.display-cards_cards {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-}
-
-.card {
-    list-style-type: none;
-}
-
-.display-cards_cards img {
-    height: 14rem;
-    width: 9rem;
-}
 
 .info {
     margin-top: 2rem;
@@ -35,17 +24,39 @@ h1 {
     justify-content: space-around;
 }
 
+
+.wrapper-positions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    position: absolute;
+}
+
+
+.positions-cards {
+    height: 100px;
+    background-color: grey;
+    width: 15%;
+    margin: 0 2%;
+    position: relative;
+}
 .dealer {
     background-color: aqua;
     height: 100px;
     width: 100px;
 }
 
-.score {
+.wrapper-right__score {
     background-color: yellow;
     height: 100px;
     width: 100px;
 }
+
+.next-round-button {
+    visibility: hidden;
+}
+
 
 #start-game {
     padding: .5rem;

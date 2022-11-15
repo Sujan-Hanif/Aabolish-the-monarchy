@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Abolish the monarchy</title>
-</head>
+  </head>
 
-<body>
-    <h1>Abolish The Monarchy</h1>
-
+  <body>
+    <header>
+      <h1>Abolish The Monarchy</h1>
+    </header>
 
     <section id="showCards" class="show-cards">
+      <section class="wrapper-positions">
+        <div class="positions-cards" id="pos1">P1</div>
+        <div class="positions-cards" id="pos2">P2</div>
+        <div class="positions-cards" id="pos3">P3</div>
+        <div class="positions-cards" id="pos4">P4</div>
+        <div class="positions-cards" id="pos5">P5</div>
+        <div class="positions-cards" id="pos6">P6</div>
+        <div class="positions-cards" id="pos7">P7</div>
+        <div class="positions-cards" id="pos8">P8</div>
+      </section>
     </section>
+
     <section class="info">
+      <div class="wrapper-left">
         <div class="dealer">
-            <h4>Dealer</h4>
+          <h4>Dealer</h4>
         </div>
-        <div class="button">
-            <button id="startGame" onclick="shuffleCards()">Start Game</button>
+        <div class="wrapper-left__next-round">
+          <button class="next-round-button">PRESS FOR NEXT ROUND</button>
         </div>
-        <div class="score">
-            <h4>Score</h4>
-            <p>player:</p>
-            <p>computer:</p>
-        </div>
+      </div>
+      <div class="wrapper-center__start-game-button">
+        <button id="startGame" onclick="shuffleCards()">Start Game</button>
+      </div>
+      <div class="wrapper-right__score">
+        <h4>Score</h4>
+        <p>player:</p>
+        <p>computer:</p>
+      </div>
     </section>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>

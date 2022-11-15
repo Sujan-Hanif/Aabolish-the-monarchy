@@ -3,28 +3,40 @@
 
 
 const displayCards = [
-    './card-pic/king-of-clubs.png',
-    './card-pic/king-of-diamonds.png',
-    './card-pic/king-of-hearts.png',
-    './card-pic/king-of-spades.png',
-    './card-pic/queen-of-clubs.png',
-    './card-pic/queen-of-diamonds.png',
-    './card-pic/queen-of-hearts.png',
-    './card-pic/queen-of-spades.png'];
+
+    { id: 0, name: 'King1', url: './card-pic/king-of-clubs.png' },
+    { id: 1, name: 'King2', url: './card-pic/king-of-diamonds.png' },
+    { id: 2, name: 'King3', url: './card-pic/king-of-hearts.png' },
+    { id: 3, name: 'King4', url: './card-pic/king-of-spades.png' },
+    { id: 4, name: 'Queen1', url: './card-pic/queen-of-clubs.png' },
+    { id: 5, name: 'Queen2', url: './card-pic/queen-of-diamonds.png' },
+    { id: 6, name: 'Queen3', url: './card-pic/queen-of-hearts.png' },
+    { id: 7, name: 'Queen4', url: './card-pic/queen-of-spades.png' }
+];
+
+
+console.log(displayCards);
+
 
 const showCardsEl = document.getElementById('showCards');
 
-
-
-displayCards.forEach((element, i) => {
-    showCardsEl.innerHTML += ` 
-    
-        <img src="${element}" alt="">
+displayCards.forEach(element => {
+    showCardsEl.innerHTML +=
+        `
+        <img class='amin-image' src="${element.url}">
+        <p>${element.name}</p>
         `;
 })
 
-function shuffleCards() {
-    let index = Math.floor(Math.random() * displayCard.length);
-    let allImage = displayCards[index];
-    document.querySelectorAll('.img').src = `./card-pic/${allImage}`;
+
+
+function shuffleCardImage() {
+    const ar = [1, 2, 3, 4]
+    const cards = document.querySelectorAll('.amin-image');
+    let shuffled = ar.sort(() => Math.random() - 0.5);
+
+    console.log(shuffled);
+
+
+
 }

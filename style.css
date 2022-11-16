@@ -19,9 +19,6 @@ h1 {
     justify-content: space-evenly;
 }
 
-.card {
-    list-style-type: none;
-}
 
 .display-cards_cards img {
     height: 14rem;
@@ -36,9 +33,14 @@ h1 {
 }
 
 .dealer {
-    background-color: aqua;
-    height: 100px;
-    width: 100px;
+    height: 14rem;
+    width: 9rem;
+}
+
+#dealerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .score {

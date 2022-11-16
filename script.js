@@ -67,9 +67,9 @@ const displayCards = [
 const showCardsEl = document.getElementById('showCards');
 
 const shuffleCardImage = () => {
-    const startButton = document.getElementById('startGame');
-    startButton.innerHTML = 'Next Round'
-    startButton.disabled = true;
+    /*  const startButton = document.getElementById('startGame');
+     startButton.innerHTML = 'Next Round'
+     startButton.disabled = true; */
 
     let showCardsNew = [...displayCards];
 
@@ -124,12 +124,20 @@ function deal() {
     console.log(cardRandomIndex);
     const imgEle = document.getElementById('dealerImage')
     imgEle.src = dealer[cardRandomIndex].url;
-
-
 }
 
 setInterval(deal, 1000);
 
+
+
+function nextRound() {
+    document.getElementById("startGame").disabled = true;
+    setTimeout(function () {
+        document.getElementById("startGame").disabled = false;
+    }, 10000);
+}
+
+document.getElementById("startGame").addEventListener("click", nextRound);
 
 /* displayCards.forEach(element => {
     showCardsEl.innerHTML +=

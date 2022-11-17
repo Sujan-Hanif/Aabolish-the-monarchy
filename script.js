@@ -14,8 +14,8 @@ const displayCards = [
 
 const showCardsEl = document.getElementById('showCards');
 
+// FUNCTION THAT SHUFFLES ALL CARDS***********
 const shuffleCardImage = () => {
-
 
     let showCardsNew = [...displayCards];
 
@@ -61,15 +61,19 @@ const dealer = [
 ];
 
 
-
 function deal() {
     let cardRandomIndex = Math.floor(Math.random() * dealer.length);
     console.log(cardRandomIndex);
     const imgEle = document.getElementById('dealerImage')
     imgEle.src = dealer[cardRandomIndex].url;
 }
-
-setInterval(deal, 1000);
+function startDeal() {
+    setInterval(deal, 1000);
+}
+// WE NEED TO CREATE FUNCTION THAT STOPS THE INTERVAL********
+function stopDeal() {
+    clearInterval();
+}
 
 
 

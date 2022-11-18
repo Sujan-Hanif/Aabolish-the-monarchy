@@ -59,29 +59,32 @@ const dealer = [
     { id: 6, name: 'QueenHearts', url: './card-pic/queen-of-hearts.png' },
     { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
 ];
-
-
+// WE MIGHT NEED 8 ARRAY INSIDE OF ANA ARRAY TO MAKE SURE THE DEALER IS JUST SHOWNG ONE ARRAY EACH ROUND
+// THE PLAN IS TO JUST HAVE 
 function deal() {
     let cardRandomIndex = Math.floor(Math.random() * dealer.length);
     console.log(cardRandomIndex);
     const imgEle = document.getElementById('dealerImage')
     imgEle.src = dealer[cardRandomIndex].url;
 }
+
+
 function startDeal() {
-    setInterval(deal, 1000);
-}
-// WE NEED TO CREATE FUNCTION THAT STOPS THE INTERVAL********
-function stopDeal() {
-    clearInterval();
+    setInterval(deal, 500);
 }
 
+// WE NEED TO CREATE FUNCTION THAT STOPS THE INTERVAL********
+
+function stopDeal() {
+    clearInterval(start);
+}
 
 
 function nextRound() {
     document.getElementById("startGame").disabled = true;
     setTimeout(function () {
         document.getElementById("startGame").disabled = false;
-    }, 10000);
+    }, 5000);
 }
 
 document.getElementById("startGame").addEventListener("click", nextRound);

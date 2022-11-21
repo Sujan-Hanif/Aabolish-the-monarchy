@@ -1,7 +1,6 @@
 "use strict"
 
 const displayCards = [
-
     { id: 0, name: 'KingClubs', url: './card-pic/king-of-clubs.png' },
     { id: 1, name: 'KingDiamond', url: './card-pic/king-of-diamonds.png' },
     { id: 2, name: 'KingHearts', url: './card-pic/king-of-hearts.png' },
@@ -16,6 +15,7 @@ const showCardsEl = document.getElementById('showCards');
 
 // FUNCTION THAT SHUFFLES ALL CARDS***********
 const shuffleCardImage = () => {
+
 
     let showCardsNew = [...displayCards];
 
@@ -46,6 +46,17 @@ const shuffleCardImage = () => {
 
 document.getElementById("startGame").addEventListener("click", shuffleCardImage());
 
+function shuffle() {
+    const timer = setInterval(shuffleCardImage, 100);
+    setTimeout(() => {
+        clearInterval(timer)
+    }, 5000);
+    setTimeout(() => {
+        alert('Choose the correct card')
+    }, 5000);
+}
+
+
 
 // DEALER CARDS THAT SHOWS INTERVAL **********************
 
@@ -59,8 +70,9 @@ const dealer = [
     { id: 6, name: 'QueenHearts', url: './card-pic/queen-of-hearts.png' },
     { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
 ];
+
 // WE MIGHT NEED 8 ARRAY INSIDE OF ANA ARRAY TO MAKE SURE THE DEALER IS JUST SHOWNG ONE ARRAY EACH ROUND
-// THE PLAN IS TO JUST HAVE 
+// THE PLAN IS TO JUST HAVE
 function deal() {
     let cardRandomIndex = Math.floor(Math.random() * dealer.length);
     console.log(cardRandomIndex);
@@ -68,17 +80,15 @@ function deal() {
     imgEle.src = dealer[cardRandomIndex].url;
 }
 
-
-function startDeal() {
-    setInterval(deal, 500);
+/* function startDeal() {
+    setInterval(deal(), 1000);
 }
-
-// WE NEED TO CREATE FUNCTION THAT STOPS THE INTERVAL********
-
+ */
+/* // FUNCTON THAT STOPS DEAL
 function stopDeal() {
     clearInterval(start);
-}
-
+} */
+/*
 
 function nextRound() {
     document.getElementById("startGame").disabled = true;
@@ -87,4 +97,13 @@ function nextRound() {
     }, 5000);
 }
 
-document.getElementById("startGame").addEventListener("click", nextRound);
+
+//
+// dealer part shuffle
+const img = document.getElementById('dealerImgRandom');
+
+const shuffleCardsItem = [...dealer];
+console.log(shuffleCardImage);
+
+ */
+// document.getElementById("startGame").addEventListener("click", nextRound); */

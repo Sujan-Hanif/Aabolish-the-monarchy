@@ -13,11 +13,14 @@ const displayCards = [
 
 const showCardsEl = document.getElementById('showCards');
 
+
+
 // FUNCTION THAT SHUFFLES ALL CARDS***********
 const shuffleCardImage = () => {
 
 
-    let showCardsNew = [...displayCards];
+    let showCardsNew = displayCards;
+    console.log(showCardsNew);
 
     showCardsEl.innerHTML = "";
 
@@ -33,28 +36,72 @@ const shuffleCardImage = () => {
 
         imgEl.classList.add("img");
         imgEl.setAttribute("class", "card-pic");
-
-        imgEl.innerHTML = showCardsNew[displayImageIndex].url;
-        divEl.append(imgEl);
-
-        showCardsEl.append(divEl);
         imgEl.src = showCardsNew[displayImageIndex].url;
-
+        divEl.append(imgEl);
+        showCardsEl.append(divEl);
         showCardsNew.splice(displayImageIndex, 1);
     }
+
+    showCardsNew.forEach((element, index) => {
+        element.addEventListener('click', () => {
+            console.log(element.name)
+        });
+    });
+
+
 };
 
 document.getElementById("startGame").addEventListener("click", shuffleCardImage());
 
-function shuffle() {
-    const timer = setInterval(shuffleCardImage, 100);
+function shuffleIteration() {
+    const timer = setInterval(shuffleCardImage, 200);
     setTimeout(() => {
         clearInterval(timer)
     }, 5000);
-    setTimeout(() => {
+    /* setTimeout(() => {
         alert('Choose the correct card')
-    }, 5000);
+    }, 5000); */
+
+
 }
+
+
+
+// SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
+function hello() {
+    document.getElementById('msg').classList.toggle('showmsg');
+    //Timer Countdown********************
+    var timeleft = 6;
+    var timer = setInterval(function () {
+        if (timeleft <= 0) {
+            clearInterval(timer);
+            document.getElementById('counter').innerHTML = "Time Over";
+        } else {
+            document.getElementById('counter').innerHTML = "Choose the Card by " + timeleft + " Seconds";
+        }
+        timeleft--;
+    }, 1000);
+
+
+    //***************************
+    /* let counter = setInterval(function msgForUser() {
+        document.getElementById('msg').classList.toggle('showmsg');
+    }, 3000)
+    setTimeout(() => {
+        clearInterval(counter)
+    }, 8000); */
+}
+
+// AUTO HIDE MESSAGE *****
+/* function autoHideMessage() {
+    let x = setInterval(function msgForUser() {
+        document.getElementById('msg').style.display = 'none';
+    }, 8000)
+}
+let click = document.getElementById('startGame');
+click.addEventListener('click', autoHideMessage);
+ */
+
 
 
 
@@ -71,14 +118,15 @@ const dealer = [
     { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
 ];
 
-// WE MIGHT NEED 8 ARRAY INSIDE OF ANA ARRAY TO MAKE SURE THE DEALER IS JUST SHOWNG ONE ARRAY EACH ROUND
-// THE PLAN IS TO JUST HAVE
+// This function randoomly shows one card from the array above******
 function deal() {
     let cardRandomIndex = Math.floor(Math.random() * dealer.length);
     console.log(cardRandomIndex);
     const imgEle = document.getElementById('dealerImage')
     imgEle.src = dealer[cardRandomIndex].url;
 }
+
+
 
 /* function startDeal() {
     setInterval(deal(), 1000);

@@ -10,12 +10,6 @@
 </head>
 
 <body>
-    <!-- user info part -->
-    <section class="userInfo">
-
-    </section>
-    <!--end of  user info part -->
-
     <h1>Abolish The Monarchy</h1>
 
     <section id="showCards" class="show-cards">
@@ -23,9 +17,11 @@
         <!--IMSGES ARE DISPALAYNG FROM ARRAY IN JS FILE-->
     </section>
 
-    <div id="images">
-
+    <div class="msg" id="msg">
+        <p id='counter'></p>
     </div>
+
+
 
     <section class="info">
 
@@ -35,9 +31,12 @@
             <!-- <button id='start' onclick="startDeal()">START DEAL</button> -->
             <!-- <button id='stop' onclick="stopDeal()">STOP DEAL</button> -->
         </div>
+
         <div class="button">
-            <button id="startGame" onclick="shuffleCardImage(), shuffle(), deal()">START ROUND</button>
+            <button id="startGame" onclick="shuffleCardImage(), shuffleIteration(), deal() , hello()">Start
+                Round</button>
         </div>
+
         <div class="score">
             <h4>Score</h4>
             <p>player:</p>

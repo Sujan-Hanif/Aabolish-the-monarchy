@@ -14,30 +14,34 @@ const displayCards = [
 const showCardsEl = document.getElementById("showCards");
 
 
-document.getElementById('marijaclick').addEventListener('click', () => {
-  document.getElementById('maria').innerHTML = ''
+document.getElementById('start-round').addEventListener('click', () => {
+  document.getElementById('showCards').innerHTML = '';
+
   displayCards.sort(() => Math.random() - .5);
 
   displayCards.forEach(element => {
-    document.getElementById('maria').innerHTML +=
+    document.getElementById('showCards').innerHTML +=
       `
-      <div style="display: flex; flex-direction: column;">
-      <p>${element.id}</p>
-      <p>${element.name}</p>
-      <img  class="cardmaria" width="100" height="100"  src="${element.url}" alt="${element.id}">
-      </div>
-      `
-
-    marijaContent()
+            <div style="display: flex; flex-direction: column;">
+            <p>${element.id}</p>
+            <p>${element.name}</p>
+            <img  class="displayed-card" width="120" height="150"  src="${element.url}" alt="${element.id}">
+            </div>
+            `
+    comparingCards();
   });
 })
 
 
+document.getElementById("startGame").addEventListener("click", displayCards);
 
-function marijaContent(idCompare) {
+
+function comparingCards(idCompare) {
   console.log(idCompare);
-  let marijaGroupImage = document.querySelectorAll('.cardmaria');
-  marijaGroupImage.forEach(element => {
+
+  let choosingCard = document.querySelectorAll('.displayed-card');
+
+  choosingCard.forEach(element => {
 
     element.addEventListener('click', () => {
       console.log(element);
@@ -52,61 +56,21 @@ function marijaContent(idCompare) {
       };
     });
   });
-  /* console.log(marijaGroupImage);*/
-}
-
-
-
-
-// FUNCTION THAT SHUFFLES ALL CARDS***********
-const shuffleCardImage = () => {
-
-  //let showCardsNew = [...displayCards];
-
-  /*console.log(showCardsNew);
-  console.log(displayCards);*/
-
-
-  // showCardsEl.innerHTML = "";
-
-  // while (showCardsNew.length > 0) {
-
-  //   const displayImageIndex = Math.floor(Math.random() * showCardsNew.length);
-
-  //   const divEl = document.createElement("div");
-
-  //   divEl.classList.add("parent");
-
-  //   const imgEl = document.createElement("img");
-
-  //   imgEl.classList.add("img");
-  //   imgEl.setAttribute("class", "card-pic");
-
-  //   imgEl.innerHTML = showCardsNew[displayImageIndex].url;
-  //   divEl.append(imgEl);
-
-  //   showCardsEl.append(divEl);
-  //   imgEl.src = showCardsNew[displayImageIndex].url;
-
-  //   showCardsNew.splice(displayImageIndex, 1);
-
-
-
-
-  // }
-
-  /* displayCards.forEach((element, index) => {
-    element.addEventListener("click", () => {
-      console.log(element.id);
-    });
-  }); */
+  /* console.log(choosingCard);*/
 };
 
 
-document.getElementById("startGame").addEventListener("click", shuffleCardImage());
+
+
+// // FUNCTION THAT SHUFFLES ALL CARDS***********
+// const shuffleCardImage = () => {
+
+
+// };
+
 
 function shuffleIteration() {
-  const timer = setInterval(shuffleCardImage, 200);
+  const timer = setInterval(displayCards, 200);
   setTimeout(() => {
     clearInterval(timer);
   }, 5000);
@@ -175,13 +139,13 @@ function deal() {
   imgId.innerHTML = dealer[cardRandomIndex].id;
   const comparingid = dealer[cardRandomIndex].id
   console.log(dealer[cardRandomIndex]);
-  compareAmin(comparingid);
+  compare(comparingid);
   return dealer[cardRandomIndex];
 };
 
-function compareAmin(id) {
-  console.log('amin', id);
-  marijaContent(id)
+function compare(id) {
+  console.log('test', id);
+  comparingCards(id)
 };
 
 

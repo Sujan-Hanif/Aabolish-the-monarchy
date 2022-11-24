@@ -1,87 +1,212 @@
-"use strict"
+"use strict";
 
 const displayCards = [
-
-    { id: 0, name: 'KingClubs', url: './card-pic/king-of-clubs.png' },
-    { id: 1, name: 'KingDiamond', url: './card-pic/king-of-diamonds.png' },
-    { id: 2, name: 'KingHearts', url: './card-pic/king-of-hearts.png' },
-    { id: 3, name: 'KingSpades', url: './card-pic/king-of-spades.png' },
-    { id: 4, name: 'QueenClubs', url: './card-pic/queen-of-clubs.png' },
-    { id: 5, name: 'QueenDiamond', url: './card-pic/queen-of-diamonds.png' },
-    { id: 6, name: 'QueenHearts', url: './card-pic/queen-of-hearts.png' },
-    { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
+  { id: 0, name: "KingClubs", url: "./card-pic/king-of-clubs.png" },
+  { id: 1, name: "KingDiamond", url: "./card-pic/king-of-diamonds.png" },
+  { id: 2, name: "KingHearts", url: "./card-pic/king-of-hearts.png" },
+  { id: 3, name: "KingSpades", url: "./card-pic/king-of-spades.png" },
+  { id: 4, name: "QueenClubs", url: "./card-pic/queen-of-clubs.png" },
+  { id: 5, name: "QueenDiamond", url: "./card-pic/queen-of-diamonds.png" },
+  { id: 6, name: "QueenHearts", url: "./card-pic/queen-of-hearts.png" },
+  { id: 7, name: "QueenSpades", url: "./card-pic/queen-of-spades.png" },
 ];
 
-const showCardsEl = document.getElementById('showCards');
+const showCardsEl = document.getElementById("showCards");
+
+
+document.getElementById('marijaclick').addEventListener('click', () => {
+  document.getElementById('maria').innerHTML = ''
+  displayCards.sort(() => Math.random() - .5);
+
+  displayCards.forEach(element => {
+    document.getElementById('maria').innerHTML +=
+      `
+      <div style="display: flex; flex-direction: column;">
+      <p>${element.id}</p>
+      <p>${element.name}</p>
+      <img  class="cardmaria" width="100" height="100"  src="${element.url}" alt="${element.id}">
+      </div>
+      `
+
+    marijaContent()
+  });
+})
+
+
+
+function marijaContent(idCompare) {
+  console.log(idCompare);
+  let marijaGroupImage = document.querySelectorAll('.cardmaria');
+  marijaGroupImage.forEach(element => {
+
+    element.addEventListener('click', () => {
+      console.log(element);
+      console.log('elementalt', element.alt);
+      console.log(element);
+      console.log('idcompare', idCompare);
+
+      if (element.alt == idCompare) {
+        alert('yes')
+      } else {
+        alert('no')
+      };
+    });
+  });
+  /* console.log(marijaGroupImage);*/
+}
+
+
+
 
 // FUNCTION THAT SHUFFLES ALL CARDS***********
 const shuffleCardImage = () => {
 
-    let showCardsNew = [...displayCards];
+  //let showCardsNew = [...displayCards];
 
-    showCardsEl.innerHTML = "";
+  /*console.log(showCardsNew);
+  console.log(displayCards);*/
 
-    while (showCardsNew.length > 0) {
 
-        const displayImageIndex = Math.floor(Math.random() * showCardsNew.length);
+  // showCardsEl.innerHTML = "";
 
-        const divEl = document.createElement("div");
+  // while (showCardsNew.length > 0) {
 
-        divEl.classList.add("parent");
+  //   const displayImageIndex = Math.floor(Math.random() * showCardsNew.length);
 
-        const imgEl = document.createElement("img");
+  //   const divEl = document.createElement("div");
 
-        imgEl.classList.add("img");
-        imgEl.setAttribute("class", "card-pic");
+  //   divEl.classList.add("parent");
 
-        imgEl.innerHTML = showCardsNew[displayImageIndex].url;
-        divEl.append(imgEl);
+  //   const imgEl = document.createElement("img");
 
-        showCardsEl.append(divEl);
-        imgEl.src = showCardsNew[displayImageIndex].url;
+  //   imgEl.classList.add("img");
+  //   imgEl.setAttribute("class", "card-pic");
 
-        showCardsNew.splice(displayImageIndex, 1);
-    }
+  //   imgEl.innerHTML = showCardsNew[displayImageIndex].url;
+  //   divEl.append(imgEl);
+
+  //   showCardsEl.append(divEl);
+  //   imgEl.src = showCardsNew[displayImageIndex].url;
+
+  //   showCardsNew.splice(displayImageIndex, 1);
+
+
+
+
+  // }
+
+  /* displayCards.forEach((element, index) => {
+    element.addEventListener("click", () => {
+      console.log(element.id);
+    });
+  }); */
 };
 
+
 document.getElementById("startGame").addEventListener("click", shuffleCardImage());
+
+function shuffleIteration() {
+  const timer = setInterval(shuffleCardImage, 200);
+  setTimeout(() => {
+    clearInterval(timer);
+  }, 5000);
+  /* setTimeout(() => {
+        alert('Choose the correct card')
+    }, 5000); */
+}
+
+// SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
+function hello() {
+  document.getElementById("msg").classList.toggle("showmsg");
+  //Timer Countdown********************
+  var timeleft = 6;
+  var timer = setInterval(function () {
+    if (timeleft <= 0) {
+      clearInterval(timer);
+      document.getElementById("counter").innerHTML = "Time Over";
+    } else {
+      document.getElementById("counter").innerHTML =
+        "Choose the Card by " + timeleft + " Seconds";
+    }
+    timeleft--;
+  }, 1000);
+
+  //***************************
+  /* let counter = setInterval(function msgForUser() {
+        document.getElementById('msg').classList.toggle('showmsg');
+    }, 3000)
+    setTimeout(() => {
+        clearInterval(counter)
+    }, 8000); */
+}
+
+// AUTO HIDE MESSAGE *****
+/* function autoHideMessage() {
+    let x = setInterval(function msgForUser() {
+        document.getElementById('msg').style.display = 'none';
+    }, 8000)
+}
+let click = document.getElementById('startGame');
+click.addEventListener('click', autoHideMessage);
+ */
 
 
 // DEALER CARDS THAT SHOWS INTERVAL **********************
 
 const dealer = [
-    { id: 0, name: 'KingClubs', url: './card-pic/king-of-clubs.png' },
-    { id: 1, name: 'KingDiamond', url: './card-pic/king-of-diamonds.png' },
-    { id: 2, name: 'KingHearts', url: './card-pic/king-of-hearts.png' },
-    { id: 3, name: 'KingSpades', url: './card-pic/king-of-spades.png' },
-    { id: 4, name: 'QueenClubs', url: './card-pic/queen-of-clubs.png' },
-    { id: 5, name: 'QueenDiamond', url: './card-pic/queen-of-diamonds.png' },
-    { id: 6, name: 'QueenHearts', url: './card-pic/queen-of-hearts.png' },
-    { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
+  { id: 0, name: "KingClubs", url: "./card-pic/king-of-clubs.png" },
+  { id: 1, name: "KingDiamond", url: "./card-pic/king-of-diamonds.png" },
+  { id: 2, name: "KingHearts", url: "./card-pic/king-of-hearts.png" },
+  { id: 3, name: "KingSpades", url: "./card-pic/king-of-spades.png" },
+  { id: 4, name: "QueenClubs", url: "./card-pic/queen-of-clubs.png" },
+  { id: 5, name: "QueenDiamond", url: "./card-pic/queen-of-diamonds.png" },
+  { id: 6, name: "QueenHearts", url: "./card-pic/queen-of-hearts.png" },
+  { id: 7, name: "QueenSpades", url: "./card-pic/queen-of-spades.png" },
 ];
 
 
+// This function randoomly shows one card from the array above******
 function deal() {
-    let cardRandomIndex = Math.floor(Math.random() * dealer.length);
-    console.log(cardRandomIndex);
-    const imgEle = document.getElementById('dealerImage')
-    imgEle.src = dealer[cardRandomIndex].url;
+  let cardRandomIndex = Math.floor(Math.random() * dealer.length);
+  console.log(cardRandomIndex);
+  const imgEle = document.getElementById("dealerImage");
+  const imgId = document.getElementById('imageId')
+  imgEle.src = dealer[cardRandomIndex].url;
+  imgId.innerHTML = dealer[cardRandomIndex].id;
+  const comparingid = dealer[cardRandomIndex].id
+  console.log(dealer[cardRandomIndex]);
+  compareAmin(comparingid);
+  return dealer[cardRandomIndex];
+};
+
+function compareAmin(id) {
+  console.log('amin', id);
+  marijaContent(id)
+};
+
+
+/* function startDeal() {
+    setInterval(deal(), 1000);
 }
-function startDeal() {
-    setInterval(deal, 1000);
-}
-// WE NEED TO CREATE FUNCTION THAT STOPS THE INTERVAL********
+ */
+/* // FUNCTON THAT STOPS DEAL
 function stopDeal() {
-    clearInterval();
-}
-
-
+    clearInterval(start);
+} */
+/*
 
 function nextRound() {
     document.getElementById("startGame").disabled = true;
     setTimeout(function () {
         document.getElementById("startGame").disabled = false;
-    }, 10000);
+    }, 5000);
 }
 
-document.getElementById("startGame").addEventListener("click", nextRound);
+// dealer part shuffle
+const img = document.getElementById('dealerImgRandom');
+
+const shuffleCardsItem = [...dealer];
+console.log(shuffleCardImage);
+
+ */
+// document.getElementById("startGame").addEventListener("click", nextRound); */

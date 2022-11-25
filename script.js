@@ -57,7 +57,6 @@ function checkCard(idCompare) {
 
 
 
-
 // Previous approach
 /* const shuffleCardImage = () => {
     let showCardsNew = [...displayCards];

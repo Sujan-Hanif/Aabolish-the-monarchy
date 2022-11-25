@@ -1,6 +1,7 @@
-"use strict"
+"use strict";
 
 const displayCards = [
+
     { id: 0, name: 'k1pink', url: './card-pic/k1.png' },
     { id: 1, name: 'k2yellow', url: './card-pic/k2.png' },
     { id: 2, name: 'k3green', url: './card-pic/k3.png' },
@@ -36,6 +37,8 @@ function checkCard(idCompare) {
     });
 }
 
+
+
 //************************** 
 /* function comapare(idcompare) {
     console.log(idcompare);
@@ -54,6 +57,7 @@ function checkCard(idCompare) {
 } */
 
 
+  //let showCardsNew = [...displayCards];
 
 
 // Previous approach
@@ -77,16 +81,20 @@ function checkCard(idCompare) {
 } */
 
 
+
+
+
 document.getElementById("startGame").addEventListener("click", shuffleCardImage());
 function shuffleIteration() {
-    const timer = setInterval(shuffleCardImage, 200);
-    setTimeout(() => {
-        clearInterval(timer)
-    }, 5000);
-    /* setTimeout(() => {
+  const timer = setInterval(shuffleCardImage, 200);
+  setTimeout(() => {
+    clearInterval(timer);
+  }, 5000);
+  /* setTimeout(() => {
         alert('Choose the correct card')
     }, 5000); */
 }
+
 
 
 // Timer for the user ********
@@ -109,6 +117,8 @@ function hello() {
 
 //***************************
 /*     let counter = setInterval(function msgForUser() {
+
+
         document.getElementById('msg').classList.toggle('showmsg');
     }, 3000)
     setTimeout(() => {
@@ -127,11 +137,10 @@ click.addEventListener('click', autoHideMessage); */
 
 
 
-
-
 // DEALER CARDS THAT SHOWS INTERVAL **********************
 
 const dealer = [
+
     { id: 0, name: 'k1pink', url: './card-pic/k1.png' },
     { id: 1, name: 'k2yellow', url: './card-pic/k2.png' },
     { id: 2, name: 'k3green', url: './card-pic/k3.png' },
@@ -140,11 +149,15 @@ const dealer = [
     { id: 5, name: 'q2yellow', url: './card-pic/q2.png' },
     { id: 6, name: 'q3green', url: './card-pic/q3.png' },
     { id: 7, name: 'q4blue', url: './card-pic/q4.png' }
+
+
 ];
+
 
 // This function randoomly shows one card from the array above******
 
 function deal() {
+
     let cardRandomIndex = Math.floor(Math.random() * dealer.length);
 
     let dealCardEl = document.getElementById('dealerImage');
@@ -167,6 +180,7 @@ function compare(id) {
 
 
 
+
 /* function startDeal() {
     setInterval(deal(), 1000);
 }
@@ -183,4 +197,7 @@ function nextRound() {
         document.getElementById("startGame").disabled = false;
     }, 7000);
 }
+
 document.getElementById("startGame").addEventListener("click", nextRound);
+
+

@@ -1,58 +1,85 @@
 "use strict"
 
 const displayCards = [
-    { id: 0, name: 'KingClubs', url: './card-pic/king-of-clubs.png' },
-    { id: 1, name: 'KingDiamond', url: './card-pic/king-of-diamonds.png' },
-    { id: 2, name: 'KingHearts', url: './card-pic/king-of-hearts.png' },
-    { id: 3, name: 'KingSpades', url: './card-pic/king-of-spades.png' },
-    { id: 4, name: 'QueenClubs', url: './card-pic/queen-of-clubs.png' },
-    { id: 5, name: 'QueenDiamond', url: './card-pic/queen-of-diamonds.png' },
-    { id: 6, name: 'QueenHearts', url: './card-pic/queen-of-hearts.png' },
-    { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
+    { id: 0, name: 'k1pink', url: './card-pic/k1.png' },
+    { id: 1, name: 'k2yellow', url: './card-pic/k2.png' },
+    { id: 2, name: 'k3green', url: './card-pic/k3.png' },
+    { id: 3, name: 'k4blue', url: './card-pic/k4.png' },
+    { id: 4, name: 'q1pink', url: './card-pic/q1.png' },
+    { id: 5, name: 'q2yellow', url: './card-pic/q2.png' },
+    { id: 6, name: 'q3green', url: './card-pic/q3.png' },
+    { id: 7, name: 'q4blue', url: './card-pic/q4.png' }
 ];
 
 const showCardsEl = document.getElementById('showCards');
 
-
-
 // FUNCTION THAT SHUFFLES ALL CARDS***********
-const shuffleCardImage = () => {
+function shuffleCardImage() {
+    showCardsEl.innerHTML = '';
+    displayCards.sort(() => Math.random() - .5);
+    displayCards.forEach(function (element) {
+        showCardsEl.innerHTML +=
+            `<img class = "show-cards" src = "${element.url}" alt = "${element.id}">`
+    })
+}
+//******************************************
+function checkCard(idCompare) {
+    console.log(idCompare);
+    let card = document.querySelectorAll('.show-cards');
+    card.forEach(element => {
+        element.addEventListener('click', () => {
+            if (element.alt == idCompare) {
+                alert('yes')
+            } else {
+                alert('no')
+            };
+        });
+    });
+}
+
+//************************** 
+/* function comapare(idcompare) {
+    console.log(idcompare);
+    let cardImg = document.querySelectorAll('shuffleCard');
+    cardImg.forEach(function (element) {
+        element.addEventListener('click', function () {
+            if (element.alt == idcompare) {
+                alert('You have achieved 1 point');
+            } else {
+                alert('You have choosed wrong card');
+            }
+
+        })
+    })
+
+} */
 
 
-    let showCardsNew = displayCards;
+
+
+
+// Previous approach
+/* const shuffleCardImage = () => {
+    let showCardsNew = [...displayCards];
+ 
     console.log(showCardsNew);
-
     showCardsEl.innerHTML = "";
-
     while (showCardsNew.length > 0) {
-
         const displayImageIndex = Math.floor(Math.random() * showCardsNew.length);
-
         const divEl = document.createElement("div");
-
         divEl.classList.add("parent");
-
         const imgEl = document.createElement("img");
-
         imgEl.classList.add("img");
-        imgEl.setAttribute("class", "card-pic");
+        // imgEl.setAttribute("class", "card-pic");
         imgEl.src = showCardsNew[displayImageIndex].url;
         divEl.append(imgEl);
         showCardsEl.append(divEl);
         showCardsNew.splice(displayImageIndex, 1);
     }
+} */
 
-    showCardsNew.forEach((element, index) => {
-        element.addEventListener('click', () => {
-            console.log(element.name)
-        });
-    });
-
-
-};
 
 document.getElementById("startGame").addEventListener("click", shuffleCardImage());
-
 function shuffleIteration() {
     const timer = setInterval(shuffleCardImage, 200);
     setTimeout(() => {
@@ -61,19 +88,16 @@ function shuffleIteration() {
     /* setTimeout(() => {
         alert('Choose the correct card')
     }, 5000); */
-
-
 }
 
 
-
-// SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
+// Timer for the user ********
 function hello() {
-    document.getElementById('msg').classList.toggle('showmsg');
+    document.getElementById('msg').classList.toggle('showmsg')
     //Timer Countdown********************
-    var timeleft = 6;
-    var timer = setInterval(function () {
-        if (timeleft <= 0) {
+    let timeleft = 6;
+    let timer = setInterval(function () {
+        if (timeleft <= -1) {
             clearInterval(timer);
             document.getElementById('counter').innerHTML = "Time Over";
         } else {
@@ -83,14 +107,16 @@ function hello() {
     }, 1000);
 
 
-    //***************************
-    /* let counter = setInterval(function msgForUser() {
+}
+
+//***************************
+/*     let counter = setInterval(function msgForUser() {
         document.getElementById('msg').classList.toggle('showmsg');
     }, 3000)
     setTimeout(() => {
         clearInterval(counter)
-    }, 8000); */
-}
+    }, 8000);
+} */
 
 // AUTO HIDE MESSAGE *****
 /* function autoHideMessage() {
@@ -99,8 +125,8 @@ function hello() {
     }, 8000)
 }
 let click = document.getElementById('startGame');
-click.addEventListener('click', autoHideMessage);
- */
+click.addEventListener('click', autoHideMessage); */
+
 
 
 
@@ -108,23 +134,38 @@ click.addEventListener('click', autoHideMessage);
 // DEALER CARDS THAT SHOWS INTERVAL **********************
 
 const dealer = [
-    { id: 0, name: 'KingClubs', url: './card-pic/king-of-clubs.png' },
-    { id: 1, name: 'KingDiamond', url: './card-pic/king-of-diamonds.png' },
-    { id: 2, name: 'KingHearts', url: './card-pic/king-of-hearts.png' },
-    { id: 3, name: 'KingSpades', url: './card-pic/king-of-spades.png' },
-    { id: 4, name: 'QueenClubs', url: './card-pic/queen-of-clubs.png' },
-    { id: 5, name: 'QueenDiamond', url: './card-pic/queen-of-diamonds.png' },
-    { id: 6, name: 'QueenHearts', url: './card-pic/queen-of-hearts.png' },
-    { id: 7, name: 'QueenSpades', url: './card-pic/queen-of-spades.png' }
+    { id: 0, name: 'k1pink', url: './card-pic/k1.png' },
+    { id: 1, name: 'k2yellow', url: './card-pic/k2.png' },
+    { id: 2, name: 'k3green', url: './card-pic/k3.png' },
+    { id: 3, name: 'k4blue', url: './card-pic/k4.png' },
+    { id: 4, name: 'q1pink', url: './card-pic/q1.png' },
+    { id: 5, name: 'q2yellow', url: './card-pic/q2.png' },
+    { id: 6, name: 'q3green', url: './card-pic/q3.png' },
+    { id: 7, name: 'q4blue', url: './card-pic/q4.png' }
 ];
 
 // This function randoomly shows one card from the array above******
+
 function deal() {
     let cardRandomIndex = Math.floor(Math.random() * dealer.length);
-    console.log(cardRandomIndex);
-    const imgEle = document.getElementById('dealerImage')
-    imgEle.src = dealer[cardRandomIndex].url;
+
+    let dealCardEl = document.getElementById('dealerImage');
+    let imgCardEl = document.getElementById('imageId');
+
+    dealCardEl.src = dealer[cardRandomIndex].url;
+    imgCardEl.innerHTML = dealer[cardRandomIndex].id;
+    const compareId = dealer[cardRandomIndex].id;
+    compare(compareId);
+
+    return dealer[cardRandomIndex];
+
 }
+
+function compare(id) {
+    console.log('test', id);
+    checkCard(id);
+};
+
 
 
 
@@ -136,22 +177,12 @@ function deal() {
 function stopDeal() {
     clearInterval(start);
 } */
-/*
+
 
 function nextRound() {
     document.getElementById("startGame").disabled = true;
     setTimeout(function () {
         document.getElementById("startGame").disabled = false;
-    }, 5000);
+    }, 7000);
 }
-
-
-//
-// dealer part shuffle
-const img = document.getElementById('dealerImgRandom');
-
-const shuffleCardsItem = [...dealer];
-console.log(shuffleCardImage);
-
- */
-// document.getElementById("startGame").addEventListener("click", nextRound); */
+document.getElementById("startGame").addEventListener("click", nextRound);

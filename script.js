@@ -12,7 +12,6 @@ const displayCards = [
 ];
 
 const showCardsEl = document.getElementById('showCards');
-
 // FUNCTION THAT SHUFFLES ALL CARDS***********
 function shuffleCardImage() {
     showCardsEl.innerHTML = '';

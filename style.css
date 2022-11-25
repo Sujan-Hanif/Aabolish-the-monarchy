@@ -49,9 +49,6 @@ h1 {
     width: 100px;
 }
 
-#start-game {
-    padding: .5rem;
-}
 
 .show-cards {
     display: flex;
@@ -80,6 +77,12 @@ h1 {
 }
 
 #startGame {
-    font-size: 1.5rem;
+    padding: .3rem;
+    font-size: 1.2rem;
     border-radius: .5rem;
+
+}
+
+#startGame:hover {
+    background-color: red;
 }

@@ -13,12 +13,17 @@ const displayCards = [
 
 const showCardsEl = document.getElementById("showCards");
 
+document.getElementById('startGame').addEventListener('click', () => {
+  shuffleIteration();
+  deal();
+  hello();
 
-document.getElementById('start-round').addEventListener('click', () => {
-  document.getElementById('showCards').innerHTML = '';
+})
 
+
+function shuffleFunction() {
+  document.getElementById('showCards').innerHTML = ''
   displayCards.sort(() => Math.random() - .5);
-
   displayCards.forEach(element => {
     document.getElementById('showCards').innerHTML +=
       `
@@ -28,38 +33,47 @@ document.getElementById('start-round').addEventListener('click', () => {
             <img  class="displayed-card" width="120" height="150"  src="${element.url}" alt="${element.id}">
             </div>
             `
-    comparingCards();
+    // comparingCards();
   });
-})
+}
+
+shuffleFunction()
 
 
-document.getElementById("startGame").addEventListener("click", displayCards);
 
 
-function comparingCards(idCompare) {
-  console.log(idCompare);
 
+
+
+const imgIdSession = (id) => {
+  console.log(id);
   let choosingCard = document.querySelectorAll('.displayed-card');
-
+  console.log(choosingCard);
   choosingCard.forEach(element => {
-
     element.addEventListener('click', () => {
       console.log(element);
       console.log('elementalt', element.alt);
       console.log(element);
-      console.log('idcompare', idCompare);
 
-      if (element.alt == idCompare) {
+      const idsessionStorage = JSON.parse(sessionStorage.getItem('idCompareShuffle'))
+      if (element.alt == idsessionStorage) {
         alert('yes')
       } else {
         alert('no')
       };
     });
   });
-  /* console.log(choosingCard);*/
+}
+
+
+
+function comparingCards(idCompare) {
+  console.log(idCompare);
+  const id = idCompare
+  sessionStorage.setItem(JSON.stringify('idCompareShuffle', id));
+  imgIdSession(id)
+
 };
-
-
 
 
 // // FUNCTION THAT SHUFFLES ALL CARDS***********
@@ -70,7 +84,9 @@ function comparingCards(idCompare) {
 
 
 function shuffleIteration() {
-  const timer = setInterval(displayCards, 200);
+
+  const timer = setInterval(shuffleFunction, 200);
+  console.log(timer);
   setTimeout(() => {
     clearInterval(timer);
   }, 5000);
@@ -78,6 +94,12 @@ function shuffleIteration() {
         alert('Choose the correct card')
     }, 5000); */
 }
+
+function myCallback(a, b) {
+  console.log(a);
+  console.log(b);
+}
+
 
 // SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
 function hello() {
@@ -128,7 +150,10 @@ const dealer = [
   { id: 7, name: "QueenSpades", url: "./card-pic/queen-of-spades.png" },
 ];
 
-
+function compare(id) {
+  console.log('test', id);
+  comparingCards(id)
+};
 // This function randoomly shows one card from the array above******
 function deal() {
   let cardRandomIndex = Math.floor(Math.random() * dealer.length);
@@ -137,16 +162,18 @@ function deal() {
   const imgId = document.getElementById('imageId')
   imgEle.src = dealer[cardRandomIndex].url;
   imgId.innerHTML = dealer[cardRandomIndex].id;
+
   const comparingid = dealer[cardRandomIndex].id
+
   console.log(dealer[cardRandomIndex]);
+
   compare(comparingid);
   return dealer[cardRandomIndex];
 };
 
-function compare(id) {
-  console.log('test', id);
-  comparingCards(id)
-};
+
+
+
 
 
 /* function startDeal() {

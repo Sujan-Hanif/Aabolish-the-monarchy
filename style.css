@@ -45,8 +45,11 @@ h1 {
 
 .score {
     background-color: yellow;
-    height: 100px;
-    width: 100px;
+    height: 10rem;
+    width: 10rem;
+}
+.score p{
+    font-size: 1.8rem;
 }
 
 

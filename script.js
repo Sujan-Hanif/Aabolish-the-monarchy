@@ -35,6 +35,7 @@ function showalert(e) {
     compScore.innerText = Number(compScore.innerText) + 1;
   }
 }
+
 // FUNCTION THAT SHUFFLES ALL CARDS***********
 function shuffleCardImage() {
   let showCardsEl = document.getElementById("showCards");
@@ -63,23 +64,6 @@ function shuffleCardImage() {
         showCardsEl.append(divEl);
         showCardsNew.splice(displayImageIndex, 1);
     }
-} */
-
-// Function to grab the click value and comapre**************************
-/* function comapare(idcompare) {
-    console.log(idcompare);
-    let cardImg = document.querySelectorAll('.show-cards');
-    cardImg.forEach(function (element) {
-        element.addEventListener('click', function () {
-            if (element.alt == idcompare) {
-                alert('You have achieved 1 point');
-            } else {
-                alert('You have choosed wrong card');
-            }
-
-        })
-    })
-
 } */
 
 // Function that keeps iteration for 5 seconds*******
@@ -155,7 +139,6 @@ function deal() {
   dealCardEl.src = dealer[cardRandomIndex].url;
   dealCardEl.dataset.id = dealer[cardRandomIndex].id;
 }
-document.getElementById("startGame").addEventListener("click", deal);
 
 // Disablinf button t prevent user to start again**********************
 /* function nextRound() {

@@ -12,7 +12,7 @@
 <body>
     <h1>Abolish The Monarchy</h1>
 
-    <section id="showCards" class="show-cards">
+    <section id="showCards" class="show-cards"  onclick="showalert(event)">
         <img src="" alt="">
         <!--IMSGES ARE DISPALAYNG FROM ARRAY IN JS FILE-->
     </section>
@@ -24,19 +24,19 @@
 
     <section class="info">
         <div class="dealer">
-            <h4>Dealer</h4>
-            <img id='dealerImage'>
+            <h3>Dealer</h3>
+            <img id="dealerImage">
         </div>
 
         <div class="button">
-            <button id="startGame" onclick="shuffleCardImage(), shuffleIteration(), deal() , hello(), compare() ">Start
-                Round</button>
+            <button id="startGame" onclick="startGame()">
+                Start Round</button>
         </div>
 
         <div class="score">
             <h4 id='score'>Score</h4>
-            <p>player:</p>
-            <p>computer:</p>
+            <p >player:<span id="player"></span></p>
+            <p>computer:<span id="comp"></span></p>
         </div>
     </section>
 

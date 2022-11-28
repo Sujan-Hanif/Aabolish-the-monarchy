@@ -101,6 +101,7 @@ h1 {
 }
 
 .score {
+
     font-family: 'Bonheur Royale', cursive;
     font-family: 'Lobster Two', cursive;
     display: flex;
@@ -193,3 +194,5 @@ background: url('background-table.jpg');
 } */
 
 /******************************************/
+
+

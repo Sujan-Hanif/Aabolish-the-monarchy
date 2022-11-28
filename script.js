@@ -11,14 +11,37 @@ const displayCards = [
 ];
 
 
-/***************************************************************************/
+const showCardsEl = document.getElementById("showCards");
 
-//
-function compare(e) {
-  const selectedcard = displayCards.filter(
-    (item) => item.id === Number(e.target.dataset.id)
-  )[0];
-  console.log();
+document.getElementById('startGame').addEventListener('click', () => {
+  shuffleIteration();
+  deal();
+  hello();
+
+})
+
+
+function shuffleFunction() {
+  document.getElementById('showCards').innerHTML = ''
+  displayCards.sort(() => Math.random() - .5);
+  displayCards.forEach(element => {
+    document.getElementById('showCards').innerHTML +=
+      `
+            <div style="display: flex; flex-direction: column;">
+            <p>${element.id}</p>
+            <p>${element.name}</p>
+            <img  class="displayed-card" width="120" height="150"  src="${element.url}" alt="${element.id}">
+            </div>
+            `
+    // comparingCards();
+  });
+}
+
+shuffleFunction()
+
+
+
+
 
 
   const dealCardEl = document.getElementById("dealerImage");
@@ -32,40 +55,70 @@ function compare(e) {
   }
 
 
+
+
+const imgIdSession = (id) => {
+  console.log(id);
+  let choosingCard = document.querySelectorAll('.displayed-card');
+  console.log(choosingCard);
+  choosingCard.forEach(element => {
+    element.addEventListener('click', () => {
+      console.log(element);
+      console.log('elementalt', element.alt);
+      console.log(element);
+
+      const idsessionStorage = JSON.parse(sessionStorage.getItem('idCompareShuffle'))
+      if (element.alt == idsessionStorage) {
+        alert('yes')
+      } else {
+        alert('no')
+      };
+    });
+  });
+
+
 }
 /* document
   .getElementById("startGame")
   .addEventListener("click", shuffleCardImage); */
 
 
-/***************************************************************************************** */
 
-// FUNCTION THAT SHUFFLES ALL CARDS***********
-function shuffleCardImage() {
-  let showCardsEl = document.getElementById("showCards");
-  showCardsEl.innerHTML = "";
-  displayCards.sort(() => Math.random() - 0.5);
-  displayCards.forEach(function (element) {
-    showCardsEl.innerHTML += `<img  src = "${element.url}" data-id ="${element.id}">`;
-    element.pointerEvents = "none";
-    setTimeout(() => {
-      element.pointerEvents = "none";
-    }, 5000);
-  });
-}
+function comparingCards(idCompare) {
+  console.log(idCompare);
+  const id = idCompare
+  sessionStorage.setItem(JSON.stringify('idCompareShuffle', id));
+  imgIdSession(id)
+
+};
+
+
+// // FUNCTION THAT SHUFFLES ALL CARDS***********
+// const shuffleCardImage = () => {
+
+
+// };
+
 
 // Function that keeps iteration for 5 seconds*******
 function shuffleIteration() {
-  const timer = setInterval(shuffleCardImage, 200);
+
+  const timer = setInterval(shuffleFunction, 200);
+  console.log(timer);
   setTimeout(() => {
     clearInterval(timer);
   }, 5000);
 }
 
 
-/******************************************************************************************/
+function myCallback(a, b) {
+  console.log(a);
+  console.log(b);
+}
 
-// Timer for the user ********
+
+// SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
+
 function hello() {
   document.getElementById("msg").classList.toggle("showmsg");
   //Timer Countdown********************
@@ -99,12 +152,36 @@ const dealer = [
   { id: 7, name: "q4blue", url: "./card-pic/q4.png" },
 ];
 
+
+function compare(id) {
+  console.log('test', id);
+  comparingCards(id)
+};
 // This function randoomly shows one card from the array above******
 function deal() {
   let cardRandomIndex = Math.floor(Math.random() * dealer.length);
-  let dealCardEl = document.getElementById("dealerImage");
-  dealCardEl.src = dealer[cardRandomIndex].url;
-  dealCardEl.dataset.id = dealer[cardRandomIndex].id;
+  console.log(cardRandomIndex);
+  const imgEle = document.getElementById("dealerImage");
+  const imgId = document.getElementById('imageId')
+  imgEle.src = dealer[cardRandomIndex].url;
+  imgId.innerHTML = dealer[cardRandomIndex].id;
+
+  const comparingid = dealer[cardRandomIndex].id
+
+  console.log(dealer[cardRandomIndex]);
+
+  compare(comparingid);
+  return dealer[cardRandomIndex];
+};
+
+
+
+
+
+
+/* function startDeal() {
+    setInterval(deal(), 1000);
+
 }
 
 // Disablinf button t prevent user to start again**********************

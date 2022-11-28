@@ -1,15 +1,15 @@
 "use strict";
-
 const displayCards = [
-  { id: 0, name: "KingClubs", url: "./card-pic/king-of-clubs.png" },
-  { id: 1, name: "KingDiamond", url: "./card-pic/king-of-diamonds.png" },
-  { id: 2, name: "KingHearts", url: "./card-pic/king-of-hearts.png" },
-  { id: 3, name: "KingSpades", url: "./card-pic/king-of-spades.png" },
-  { id: 4, name: "QueenClubs", url: "./card-pic/queen-of-clubs.png" },
-  { id: 5, name: "QueenDiamond", url: "./card-pic/queen-of-diamonds.png" },
-  { id: 6, name: "QueenHearts", url: "./card-pic/queen-of-hearts.png" },
-  { id: 7, name: "QueenSpades", url: "./card-pic/queen-of-spades.png" },
+  { id: 0, name: "k1pink", url: "./card-pic/k1.png" },
+  { id: 1, name: "k2yellow", url: "./card-pic/k2.png" },
+  { id: 2, name: "k3green", url: "./card-pic/k3.png" },
+  { id: 3, name: "k4blue", url: "./card-pic/k4.png" },
+  { id: 4, name: "q1pink", url: "./card-pic/q1.png" },
+  { id: 5, name: "q2yellow", url: "./card-pic/q2.png" },
+  { id: 6, name: "q3green", url: "./card-pic/q3.png" },
+  { id: 7, name: "q4blue", url: "./card-pic/q4.png" },
 ];
+
 
 const showCardsEl = document.getElementById("showCards");
 
@@ -44,6 +44,18 @@ shuffleFunction()
 
 
 
+  const dealCardEl = document.getElementById("dealerImage");
+  const playerScore = document.getElementById("player");
+  const compScore = document.getElementById("comp");
+  console.log("selectedcard ", selectedcard);
+  if (e.target.dataset.id === dealCardEl.dataset.id) {
+    playerScore.innerText = Number(playerScore.innerText) + 1;
+  } else {
+    compScore.innerText = Number(compScore.innerText) + 1;
+  }
+
+
+
 
 const imgIdSession = (id) => {
   console.log(id);
@@ -63,7 +75,12 @@ const imgIdSession = (id) => {
       };
     });
   });
+
+
 }
+/* document
+  .getElementById("startGame")
+  .addEventListener("click", shuffleCardImage); */
 
 
 
@@ -83,6 +100,7 @@ function comparingCards(idCompare) {
 // };
 
 
+// Function that keeps iteration for 5 seconds*******
 function shuffleIteration() {
 
   const timer = setInterval(shuffleFunction, 200);
@@ -90,10 +108,8 @@ function shuffleIteration() {
   setTimeout(() => {
     clearInterval(timer);
   }, 5000);
-  /* setTimeout(() => {
-        alert('Choose the correct card')
-    }, 5000); */
 }
+
 
 function myCallback(a, b) {
   console.log(a);
@@ -102,12 +118,13 @@ function myCallback(a, b) {
 
 
 // SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
+
 function hello() {
   document.getElementById("msg").classList.toggle("showmsg");
   //Timer Countdown********************
-  var timeleft = 6;
-  var timer = setInterval(function () {
-    if (timeleft <= 0) {
+  let timeleft = 6;
+  let timer = setInterval(function () {
+    if (timeleft <= -1) {
       clearInterval(timer);
       document.getElementById("counter").innerHTML = "Time Over";
     } else {
@@ -117,38 +134,24 @@ function hello() {
     timeleft--;
   }, 1000);
 
-  //***************************
-  /* let counter = setInterval(function msgForUser() {
-        document.getElementById('msg').classList.toggle('showmsg');
-    }, 3000)
-    setTimeout(() => {
-        clearInterval(counter)
-    }, 8000); */
 }
 
-// AUTO HIDE MESSAGE *****
-/* function autoHideMessage() {
-    let x = setInterval(function msgForUser() {
-        document.getElementById('msg').style.display = 'none';
-    }, 8000)
-}
-let click = document.getElementById('startGame');
-click.addEventListener('click', autoHideMessage);
- */
+/*********************************************************************************** */
 
 
 // DEALER CARDS THAT SHOWS INTERVAL **********************
 
 const dealer = [
-  { id: 0, name: "KingClubs", url: "./card-pic/king-of-clubs.png" },
-  { id: 1, name: "KingDiamond", url: "./card-pic/king-of-diamonds.png" },
-  { id: 2, name: "KingHearts", url: "./card-pic/king-of-hearts.png" },
-  { id: 3, name: "KingSpades", url: "./card-pic/king-of-spades.png" },
-  { id: 4, name: "QueenClubs", url: "./card-pic/queen-of-clubs.png" },
-  { id: 5, name: "QueenDiamond", url: "./card-pic/queen-of-diamonds.png" },
-  { id: 6, name: "QueenHearts", url: "./card-pic/queen-of-hearts.png" },
-  { id: 7, name: "QueenSpades", url: "./card-pic/queen-of-spades.png" },
+  { id: 0, name: "k1pink", url: "./card-pic/k1.png" },
+  { id: 1, name: "k2yellow", url: "./card-pic/k2.png" },
+  { id: 2, name: "k3green", url: "./card-pic/k3.png" },
+  { id: 3, name: "k4blue", url: "./card-pic/k4.png" },
+  { id: 4, name: "q1pink", url: "./card-pic/q1.png" },
+  { id: 5, name: "q2yellow", url: "./card-pic/q2.png" },
+  { id: 6, name: "q3green", url: "./card-pic/q3.png" },
+  { id: 7, name: "q4blue", url: "./card-pic/q4.png" },
 ];
+
 
 function compare(id) {
   console.log('test', id);
@@ -178,26 +181,70 @@ function deal() {
 
 /* function startDeal() {
     setInterval(deal(), 1000);
-}
- */
-/* // FUNCTON THAT STOPS DEAL
-function stopDeal() {
-    clearInterval(start);
-} */
-/*
 
+}
+
+// Disablinf button t prevent user to start again**********************
 function nextRound() {
-    document.getElementById("startGame").disabled = true;
-    setTimeout(function () {
-        document.getElementById("startGame").disabled = false;
-    }, 5000);
+  document.getElementById("startGame").disabled = true;
+  setTimeout(function () {
+    document.getElementById("startGame").disabled = false;
+  }, 7000);
 }
 
-// dealer part shuffle
-const img = document.getElementById('dealerImgRandom');
+// Showng user location using API*******
+const api = "e15aa9f9b95de69c756f4a4c6203cfd7";
+const loc = document.querySelector("#location");
+window.addEventListener("load", () => {
+  let long;
+  let lat;
+  // Accesing Geolocation of User
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      // Storing Longitude and Latitude in variables
+      long = position.coords.longitude;
+      lat = position.coords.latitude;
+      const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
-const shuffleCardsItem = [...dealer];
-console.log(shuffleCardImage);
+      // Using fetch to get data
+      fetch(base)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const place = data.name;
+          // Interacting with DOM to show data
+          loc.textContent = `${place}`;
+        });
+    });
+  }
+});
 
- */
-// document.getElementById("startGame").addEventListener("click", nextRound); */
+shuffleCardImage();
+
+// Gathering all function inside one function for Start game
+function startGame() {
+  shuffleIteration();
+  hello();
+  deal();
+  nextRound();
+}
+
+/*  FOR RULES POPUP WINDOW */
+
+const popupRules = document.getElementById("popup-rules");
+const buttonRules = document.getElementById("button-rules");
+const popupClose = document.getElementById("popup-close");
+
+function showRules() {
+  popupRules.classList.toggle("popup-rules__active");
+}
+
+function hideRules() {
+  popupRules.classList.remove("popup-rules__active");
+}
+
+buttonRules.addEventListener("click", showRules);
+popupClose.addEventListener("click", hideRules);
+
+

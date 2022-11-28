@@ -1,24 +1,80 @@
+@font-face {
+    font-family: bloody_terror;
+    src: url(bloody_terror.ttf);
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Lobster+Two&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-
-h1 {
-    text-align: center;
-    margin-bottom: 2rem;
+body{
+    background-image: url("background-game.jpg");
 }
 
+header {
+    display: flex;
+    justify-content: space-around;
+    
+    
+}
 
+h1 {
+    color: #3D0000;
+    text-align: center;
+    margin: auto;
+    font-family: bloody_terror;
+    text-shadow: 0 0 1px #fff;
+    letter-spacing: 0.6rem;
+}
+
+/* Date and Time */
+.timeAndDate{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Bonheur Royale', cursive;
+    font-family: 'Lobster Two', cursive;
+}
+
+.time {
+    background-image: url(sign-game.png);
+    text-shadow: 0 0 4px #fff;
+    color: #000000;
+    padding-top: 65px;
+    text-align: center;
+    background-size: cover;
+    height: 160px;
+    width: 210px;
+    margin-top: -40px;
+    font-size: 18px;
+}
+
+.exit__button, .button-rules{
+    background-color: darkred;
+    color: whitesmoke;
+    
+    border-radius: 10%;
+    
+    font-family: 'Lobster Two', cursive;
+    font-size: 1rem;
+    padding: 0.3rem;
+    text-align: center;
+    
+    border: none;
+}
+
+/*****************************************/
 
 .display-cards_cards {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
 }
-
 
 .display-cards_cards img {
     height: 14rem;
@@ -41,21 +97,37 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border: 1px solid black;
 }
 
 .score {
-    background-color: yellow;
-    height: 10rem;
-    width: 10rem;
-}
-.score p{
-    font-size: 1.8rem;
+
+    font-family: 'Bonheur Royale', cursive;
+    font-family: 'Lobster Two', cursive;
+    display: flex;
+    background-image: url("score-scroll.png");
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 1.2rem;
+    height: 14rem;
+    width: 13.5rem;
 }
 
+.score p {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.score h2 {
+    padding: 1rem;
+}
 
 .show-cards {
     display: flex;
-
+background: url('background-table.jpg');
     align-items: center;
     justify-content: center;
     gap: .2rem;
@@ -69,23 +141,58 @@ h1 {
 
 .msg {
     display: none;
+    font-family: 'Bonheur Royale', cursive;
+    font-family: 'Lobster Two', cursive;
 }
 
 .showmsg {
     display: block;
     text-align: center;
     font-size: 2rem;
-    color: red;
-
+    color: #990000;
 }
 
 #startGame {
     padding: .3rem;
     font-size: 1.2rem;
     border-radius: .5rem;
-
 }
 
 #startGame:hover {
-    background-color: red;
+    background-color: #990000;
 }
+
+.popup-rules {
+    /*visibility: hidden;*/
+    background-color: rgba(92, 77, 84, 0.8);
+    font-size: 1rem;
+    color: white;
+    padding: 1rem;
+    width: 40vw;
+    height: 40vh;
+    position: absolute;
+    left: -100%;
+    top: 50%;
+    transition-duration: 1.2s;
+    transform: translate(-50%, -50%);
+}
+
+.popup-rules__active {
+    /*visibility: visible;*/
+    left: 50%;
+    top: 50%;
+}
+
+.popup-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+/* 
+.button-rules {
+   
+} */
+
+/******************************************/
+
+

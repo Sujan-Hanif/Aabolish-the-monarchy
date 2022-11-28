@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Abolish the monarchy</title>
+</head>
+
+<body>
+    <header>
+     
+        <!-- Time and Date -->
+    <section class="timeAndDate">
+        
+        <div class="time">
+            <span class="hms"></span>
+            <span class="ampm"></span>
+            <br>
+            <span class="date"></span>
+            <div>
+                <p>Your location is</p>
+                <div id="location">Unable to Fetch Location</div>
+            </div>  
+        </div>
+ 
+        <h1>ABOLISH THE MONARCHY</h1>
+
+        <div>
+            <a href="index.html"> <button class="exit__button">EXIT</button></a>
+            <button class="button-rules" id="button-rules" type="button">RULES</button>
+            
+        </div>
+
+    </section>
+
+    </header>
+    
+    <div class="popup-rules" id="popup-rules">
+        <button id="popup-close" class="popup-close">X</button>
+        <h3>The objective is to get as many points as possible, and beat the computer.</h3><br>
+        <p>In order to score a point, the player has to click the matching king or queen that is revealed in the dealer section after the shuffle.</p>
+    </div>
+
+    <section id="showCards" class="show-cards"  onclick="compare(event)">
+        <img src="" alt="">
+        <!--IMSGES ARE DISPALAYNG FROM ARRAY IN JS FILE-->
+    </section>
+
+    <div class="msg" id="msg">
+        <p id='counter'></p>
+    </div>
+
+    <section class="info">
+        <div class="dealer">
+            <h3>Dealer</h3>
+            <img id="dealerImage">
+        </div>
+
+        <div class="button">
+            <button id="startGame" onclick="startGame()">
+                Start Round</button>
+        </div>
+
+        <div class="score">
+            <h2 id='score'>Score</h2>
+            <p>Player:<span id="player"> </span></p>
+        
+           <p>Computer: <span id="comp"> </span></p>
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>

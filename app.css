@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    background-image :url(flames.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    width: 100%;
+margin-bottom: 5px;
+background-color: rgb(146, 51, 0);
+height: 50px;
+letter-spacing: 1rem;
+text-align: center;
+font-size: 3rem;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.wrapper {
+display: flex;
+justify-content: center;
+
+margin: 0 auto;
+margin-top: 50px;
+
+width: 90%;
+
+background-color: rgba(152, 106, 25,);
+
+
+
+}
+
+.wrapper-box {
+    margin: 5px;
+    
+    height: 150px;
+    width: 40%;
+    text-align: center;
+
+    justify-content: center;
+    }
+
+.start-game__button {
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    background-color: orange;
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.start-game__button:hover {
+ opacity: 1;
+}

@@ -33,14 +33,14 @@ function updateTime() {
 
   /* date */
   var dow = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ],
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ],
     month = [
       "January",
       "February",
@@ -70,6 +70,8 @@ setInterval(function () {
   updateTime();
 }, 1000);
 
+/****************************************************************************/
+
 const displayCards = [
   { id: 0, name: "k1pink", url: "./card-pic/k1.png" },
   { id: 1, name: "k2yellow", url: "./card-pic/k2.png" },
@@ -82,40 +84,11 @@ const displayCards = [
 ];
 
 
-/***************************************************************************/
-
-
-const showCardsEl = document.getElementById("showCards");
-
-document.getElementById('startGame').addEventListener('click', () => {
-  shuffleIteration();
-  deal();
-  hello();
-
-})
-
-
-function shuffleFunction() {
-  document.getElementById('showCards').innerHTML = ''
-  displayCards.sort(() => Math.random() - .5);
-  displayCards.forEach(element => {
-    document.getElementById('showCards').innerHTML +=
-      `
-            <div style="display: flex; flex-direction: column;">
-            <p>${element.id}</p>
-            <p>${element.name}</p>
-            <img  class="displayed-card" width="120" height="150"  src="${element.url}" alt="${element.id}">
-            </div>
-            `
-    // comparingCards();
-  });
-}
-
-shuffleFunction()
-
-
-
-
+function compare(e) {
+  const selectedcard = displayCards.filter(
+    (item) => item.id === Number(e.target.dataset.id)
+  )[0];
+  console.log();
 
 
   const dealCardEl = document.getElementById("dealerImage");
@@ -129,56 +102,31 @@ shuffleFunction()
   }
 
 
-
-
-const imgIdSession = (id) => {
-  console.log(id);
-  let choosingCard = document.querySelectorAll('.displayed-card');
-  console.log(choosingCard);
-  choosingCard.forEach(element => {
-    element.addEventListener('click', () => {
-      console.log(element);
-      console.log('elementalt', element.alt);
-      console.log(element);
-
-      const idsessionStorage = JSON.parse(sessionStorage.getItem('idCompareShuffle'))
-      if (element.alt == idsessionStorage) {
-        alert('yes')
-      } else {
-        alert('no')
-      };
-    });
-  });
-
-
-
 }
+/* document
+  .getElementById("startGame")
+  .addEventListener("click", shuffleCardImage); */
 
 
 /***************************************************************************************** */
 
-
-function comparingCards(idCompare) {
-  console.log(idCompare);
-  const id = idCompare
-  sessionStorage.setItem(JSON.stringify('idCompareShuffle', id));
-  imgIdSession(id)
-
-};
-
-
-// // FUNCTION THAT SHUFFLES ALL CARDS***********
-// const shuffleCardImage = () => {
-
-
-// };
-
+// FUNCTION THAT SHUFFLES ALL CARDS***********
+function shuffleCardImage() {
+  let showCardsEl = document.getElementById("showCards");
+  showCardsEl.innerHTML = "";
+  displayCards.sort(() => Math.random() - 0.5);
+  displayCards.forEach(function (element) {
+    showCardsEl.innerHTML += `<img  src = "${element.url}" data-id ="${element.id}">`;
+    element.pointerEvents = "none";
+    setTimeout(() => {
+      element.pointerEvents = "none";
+    }, 5000);
+  });
+}
 
 // Function that keeps iteration for 5 seconds*******
 function shuffleIteration() {
-
-  const timer = setInterval(shuffleFunction, 200);
-  console.log(timer);
+  const timer = setInterval(shuffleCardImage, 200);
   setTimeout(() => {
     clearInterval(timer);
   }, 5000);
@@ -187,15 +135,7 @@ function shuffleIteration() {
 
 /******************************************************************************************/
 
-function myCallback(a, b) {
-  console.log(a);
-  console.log(b);
-}
-
-
-// SHOWING MESSAGE TO USER AND AUTO HIDE IN DOM********
-
-
+// Timer for the user ********
 function hello() {
   document.getElementById("msg").classList.toggle("showmsg");
   //Timer Countdown********************
@@ -210,7 +150,11 @@ function hello() {
     }
     timeleft--;
   }, 1000);
+
 }
+
+/*********************************************************************************** */
+
 
 // DEALER CARDS THAT SHOWS INTERVAL **********************
 
@@ -225,37 +169,13 @@ const dealer = [
   { id: 7, name: "q4blue", url: "./card-pic/q4.png" },
 ];
 
-
-function compare(id) {
-  console.log('test', id);
-  comparingCards(id)
-};
 // This function randoomly shows one card from the array above******
 function deal() {
   let cardRandomIndex = Math.floor(Math.random() * dealer.length);
-  console.log(cardRandomIndex);
-  const imgEle = document.getElementById("dealerImage");
-  const imgId = document.getElementById('imageId')
-  imgEle.src = dealer[cardRandomIndex].url;
-  imgId.innerHTML = dealer[cardRandomIndex].id;
-
-  const comparingid = dealer[cardRandomIndex].id
-
-  console.log(dealer[cardRandomIndex]);
-
-  compare(comparingid);
-  return dealer[cardRandomIndex];
+  let dealCardEl = document.getElementById("dealerImage");
+  dealCardEl.src = dealer[cardRandomIndex].url;
+  dealCardEl.dataset.id = dealer[cardRandomIndex].id;
 };
-
-
-
-
-
-
-/* function startDeal() {
-    setInterval(deal(), 1000);
-
-}
 
 // Disablinf button t prevent user to start again**********************
 function nextRound() {
@@ -263,7 +183,7 @@ function nextRound() {
   setTimeout(function () {
     document.getElementById("startGame").disabled = false;
   }, 7000);
-}
+};
 
 // Showng user location using API*******
 const api = "e15aa9f9b95de69c756f4a4c6203cfd7";
@@ -278,7 +198,6 @@ window.addEventListener("load", () => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
       const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
-
       // Using fetch to get data
       fetch(base)
         .then((response) => {
@@ -292,7 +211,6 @@ window.addEventListener("load", () => {
     });
   }
 });
-
 shuffleCardImage();
 
 // Gathering all function inside one function for Start game
@@ -301,18 +219,15 @@ function startGame() {
   hello();
   deal();
   nextRound();
-}
+};
 
 /*  FOR RULES POPUP WINDOW */
-
 const popupRules = document.getElementById("popup-rules");
 const buttonRules = document.getElementById("button-rules");
 const popupClose = document.getElementById("popup-close");
-
 function showRules() {
   popupRules.classList.toggle("popup-rules__active");
 }
-
 function hideRules() {
   popupRules.classList.remove("popup-rules__active");
 }

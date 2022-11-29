@@ -135,13 +135,12 @@ function shuffleIteration() {
 
 /******************************************************************************************/
 
-// Timer for the user ********
+// Timer and countdownfor the user ********
+document.getElementById("msg").classList.toggle("showmsg");
 function hello() {
-  document.getElementById("msg").classList.toggle("showmsg");
-  //Timer Countdown********************
   let timeleft = 6;
   let timer = setInterval(function () {
-    if (timeleft <= -1) {
+    if (timeleft <= 0) {
       clearInterval(timer);
       document.getElementById("counter").innerHTML = "Time Over";
     } else {
